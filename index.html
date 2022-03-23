@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -11,9 +16,187 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/assets/css/styles.css" />
-    <title>Weather Dashboard</title>
   </head>
   <body>
+    <header class="title text-center p-4 bg-dark text-white font">
+      <h1 class="slide-left">Weather Dashboard</h1>
+    </header>
+    <main>
+      <div class="container-fluid m-4">
+        <div class="row">
+          <div class="col-3">
+            <div class="container-fluid align-content-center">
+              <h2 class="h1">Search for a City:</h2>
+              <form>
+                <div class="input-group mb-2 w-100 input-group-lg">
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default"
+                  />
+                </div>
+                <button type="button" class="mt-2 w-100 btn btn-primary btn-lg">
+                  Search
+                </button>
+              </form>
+              <hr />
+              <ul class="" id=""></ul>
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="container">
+              <div class="row border border-dark mb-3">
+                <h2 class="mt-2">
+                  <span>City Specified</span> <span>(03/11/1998)</span>
+                  <i>emoji</i>
+                </h2>
+                <ul class="list-group list-group-flush mb-2 mt-2">
+                  <li class="list-group-item border-0">Temp: <span></span></li>
+                  <li class="list-group-item border-0">Wind: <span></span></li>
+                  <li class="list-group-item border-0">
+                    Humidity: <span></span>
+                  </li>
+                  <li class="list-group-item border-0">
+                    UV Index: <span></span>
+                  </li>
+                </ul>
+              </div>
+              <div class="row">
+                <h3 class="h3 p-0">5-Day Forecast:</h3>
+                <div class="row p-0">
+                  <div class="col bg-secondary text-light me-2">
+                    <h4>3/31/2022</h4>
+                    <ul class="list-group list-group-flush mb-3">
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        emoji
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        temp: <i></i>
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        Wind: <i></i>
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        Humidity: <i></i>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col bg-secondary text-light me-2">
+                    <h4>3/31/2022</h4>
+                    <ul class="list-group list-group-flush mb-3">
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        emoji
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        temp: <i></i>
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        Wind: <i></i>
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        Humidity: <i></i>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col bg-secondary text-light me-2">
+                    <h4>3/31/2022</h4>
+                    <ul class="list-group list-group-flush mb-3">
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        emoji
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        temp: <i></i>
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        Wind: <i></i>
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        Humidity: <i></i>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col bg-secondary text-light me-2">
+                    <h4>3/31/2022</h4>
+                    <ul class="list-group list-group-flush mb-3">
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        emoji
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        temp: <i></i>
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        Wind: <i></i>
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        Humidity: <i></i>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col bg-secondary text-light me-2">
+                    <h4>3/31/2022</h4>
+                    <ul class="list-group list-group-flush mb-3">
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        emoji
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        temp: <i></i>
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        Wind: <i></i>
+                      </li>
+                      <li
+                        class="list-group-item bg-secondary border-0 text-white ps-0"
+                      >
+                        Humidity: <i></i>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
