@@ -1,5 +1,28 @@
-:root{
-    --font-stack: font-family: 'PT Sans', sans-serif;
+:root {
+  --font-stack: "Montserrat", sans-serif;
+  --bg-color-two: #b5b5b5;
+  --bg-color-three: #33475a;
+  --bg-color-four: linear-gradient(
+    90deg,
+    rgba(200, 191, 73, 0.8099614845938375) 27%,
+    rgba(18, 52, 150, 0.7903536414565826) 46%
+  );
+}
+
+.font-stack {
+  font-family: var(--font-stack);
+}
+
+.bg-two {
+  background-color: var(--bg-color-two);
+}
+
+.bg-three {
+  background-color: var(--bg-color-three);
+}
+
+.bg-four {
+  background: var(--bg-color-four);
 }
 
 /* .slide-left {
@@ -10,8 +33,8 @@
 
 @-webkit-keyframes slide-left {
   0% {
-    -webkit-transform: translateX(2500px);
-    transform: translateX(2500px);
+    -webkit-transform: translateX(1500px);
+    transform: translateX(1500px);
   }
   100% {
     -webkit-transform: translateX(0px);
