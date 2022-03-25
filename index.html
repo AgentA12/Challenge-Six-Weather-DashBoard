@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,28 +18,30 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/assets/css/styles.css" />
+    <title>Weather Dashboard</title>
   </head>
   <body>
     <header class="p-4 bg-four text-white mb-4">
-      <h1 class="slide-left font-stack text-center">
+      <h1 class="fade-in font-stack text-center">
         <b>Weather Dashboard</b>
       </h1>
     </header>
     <main>
       <div class="container-fluid">
-        <div class="row m-4 gx-5">
+        <div class="row m-4 gx-5 slide-left">
           <div class="col-xl-3 col-sm-5 text-center text-md-start">
-            <h2 class="h1">Search for a City:</h2>
-            <form>
-              <div class="input-group mb-2 input-group-lg">
-                <input
-                  type="text"
-                  class="form-control"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-default"
-                />
-              </div>
-              <button type="button" class="mt-2 w-100 btn btn-primary btn-lg">
+            <form id="form-container">
+              <label for="city-input" class="form-label h2 font-stack"
+                >Search for a city:</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="city-input"
+                aria-describedby="emailHelp"
+              />
+              <div class="form-text h4 mt-2">See Todays Weather</div>
+              <button type="submit" class="btn btn-primary w-100 btn-lg">
                 Search
               </button>
             </form>
@@ -51,66 +54,10 @@
                   text
                 </div>
               </li>
-              <li>
-                <div
-                  class="bg-two text-center list-group-item border-0 mb-2 rounded h5"
-                >
-                  text
-                </div>
-              </li>
-              <li>
-                <div
-                  class="bg-two text-center list-group-item border-0 mb-2 rounded h5"
-                >
-                  text
-                </div>
-              </li>
-              <li>
-                <div
-                  class="bg-two text-center list-group-item border-0 mb-2 rounded h5"
-                >
-                  text
-                </div>
-              </li>
-              <li>
-                <div
-                  class="bg-two text-center list-group-item border-0 mb-2 rounded h5"
-                >
-                  text
-                </div>
-              </li>
-              <li>
-                <div
-                  class="bg-two text-center list-group-item border-0 mb-2 rounded h5"
-                >
-                  text
-                </div>
-              </li>
-              <li>
-                <div
-                  class="bg-two text-center list-group-item border-0 mb-2 rounded h5"
-                >
-                  text
-                </div>
-              </li>
-              <li>
-                <div
-                  class="bg-two text-center list-group-item border-0 mb-2 rounded h5"
-                >
-                  text
-                </div>
-              </li>
-              <li>
-                <div
-                  class="bg-two text-center list-group-item border-0 mb-2 rounded h5"
-                >
-                  text
-                </div>
-              </li>
             </ul>
           </div>
 
-          <div class="col-xl-9 col-sm-7">
+          <div class="col-xl-9 col-sm-7 slide-bottom">
             <div class="row border border-2 border-dark mb-3 mt-2 mt-sm-0">
               <h2 class="mt-2">
                 <span>City Specified</span> <span>(03/11/1998)</span>
