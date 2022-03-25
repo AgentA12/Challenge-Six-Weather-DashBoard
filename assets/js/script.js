@@ -76,18 +76,21 @@ function getCurrentWeatherData(dataObj) {
       if (response.ok) {
         response.json().then((data) => {
           console.log(data);
-
           //store the necessary currentForcast data to display
           var currentForcast = {
             city: dataObj.city,
-            date: new Date(data.current.dt * 1000).toLocaleString(),
+            date: '(' + new Date(data.current.dt * 1000).toLocaleString("fr-CA", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            }) + ')',
             emoji: data.current.weather[0].icon,
             temp: data.current.temp + " \u00B0C",
             humidity: data.current.humidity + " %",
             UV: data.current.uvi,
             wind: data.current.wind_speed + " m/s",
           };
-          console.log(currentForcast);
+
           //get 5 day forcast
           var fiveDayForcast = [];
           //loop through the daily data array and get necessary data then push each object into the five day forcast array
@@ -104,9 +107,11 @@ function getCurrentWeatherData(dataObj) {
               wind: data.daily[i].wind_speed + " m/s",
               humidity: data.daily[i].humidity + " %",
             };
+            //add the day to the array
             fiveDayForcast.push(day);
           }
-          console.log(fiveDayForcast);
+          //pass the two bits of data to get appended to the page
+          displayWeatherData(currentForcast, fiveDayForcast);
         });
       }
     })
@@ -115,4 +120,19 @@ function getCurrentWeatherData(dataObj) {
     });
 }
 
-console.log();
+function displayWeatherData(currentData, fiveDayData) {
+  console.log(currentData);
+  console.log(fiveDayData);
+  //append current date data to html
+  $("#current-city").text(currentData.city);
+  $("#current-date").text(currentData.date);
+  $("#current-emoji").text();
+  $("#current-temp").text(currentData.temp);
+  $("#current-wind").text(currentData.wind);
+  $("#current-humidity").text(currentData.humidity);
+  $("#current-UV").text(currentData.UV);
+
+
+  //update five day forcast
+  
+}

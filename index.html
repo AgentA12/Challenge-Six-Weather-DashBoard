@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,14 +21,17 @@
     <title>Weather Dashboard</title>
   </head>
   <body>
+    <!-- header -->
     <header class="p-4 bg-four text-white mb-4">
       <h1 class="fade-in font-stack text-center">
         <b>Weather Dashboard</b>
       </h1>
     </header>
+    <!-- main -->
     <main>
       <div class="container-fluid">
         <div class="row m-4 gx-5 slide-left">
+          <!-- first left column with form  -->
           <div class="col-xl-3 col-sm-5 text-center text-md-start">
             <form id="form-container">
               <label for="city-input" class="form-label h2 font-stack"
@@ -56,21 +59,21 @@
               </li>
             </ul>
           </div>
-
+          <!-- second right column with displayed weather data -->
           <div class="col-xl-9 col-sm-7 slide-bottom">
             <div class="row border border-2 border-dark mb-3 mt-2 mt-sm-0">
               <h2 class="mt-2">
-                <span>City Specified</span> <span>(03/11/1998)</span>
-                <i>emojii</i>
+                <span id="current-city"></span> <span id="current-date"></span>
+                <i id="current-emoji"></i>
               </h2>
               <ul class="list-group list-group-flush mb-2 mt-2">
-                <li class="list-group-item border-0">Temp: <span></span></li>
-                <li class="list-group-item border-0">Wind: <span></span></li>
+                <li class="list-group-item border-0">Temp: <span id="current-temp"></span></li>
+                <li class="list-group-item border-0">Wind: <span id="current-wind"></span></li>
                 <li class="list-group-item border-0">
-                  Humidity: <span></span>
+                  Humidity: <span id="current-humidity"></span>
                 </li>
                 <li class="list-group-item border-0">
-                  UV Index: <span></span>
+                  UV Index: <span id="current-UV"></span>
                 </li>
               </ul>
             </div>
