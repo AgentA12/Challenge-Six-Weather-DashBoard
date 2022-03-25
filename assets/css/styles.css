@@ -14,6 +14,11 @@ body {
   overflow-y: hidden;
 }
 
+.style-none{
+  list-style: none;
+  text-decoration: none;
+}
+
 .font-stack {
   font-family: var(--font-stack);
 }

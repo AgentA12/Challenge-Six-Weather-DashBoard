@@ -126,20 +126,44 @@ function displayWeatherData(currentData, fiveDayData) {
   //append current date data to html
   $("#current-city").text(currentData.city);
   $("#current-date").text(currentData.date);
-  $("#current-emoji").text();
+  $("#current-emoji").attr(
+    "src",
+    `http://openweathermap.org/img/w/${currentData.emoji}.png`
+  );
   $("#current-temp").text(currentData.temp);
   $("#current-wind").text(currentData.wind);
   $("#current-humidity").text(currentData.humidity);
   $("#current-UV").text(currentData.UV);
 
+  //apply bg color for UV index
+  if (currentData.UV <= 2) {
+    $("#current-UV").addClass("badge bg-success");
+  } else if (currentData.UV <= 6) {
+    $("#current-UV").addClass("badge bg-warning");
+  } else $("#current-UV").addClass("badge bg-danger");
+
   //update five day forcast
   for (x = 0; x < fiveDayData.length; x++) {
-    //select the correct container div using the data-id attribute
-    //WHATS HAPPENING: after selecting the contianer div, find the element inside the div that matches the .find() selector, then look at the only children that are spans and set the text content 
+    //after selecting the contianer div, find the element inside the div that matches the .find() selector, then look at the only children that are spans and set the text content
     $(`[data-id=${x}]`).find("h4").text(fiveDayData[x].date);
-    $(`[data-id=${x}]`).find("[id=five-day-emoji]").text(fiveDayData[x].emoji)
-    $(`[data-id=${x}]`).find("[id=five-day-temp]").children().text(fiveDayData[x].temp);
-    $(`[data-id=${x}]`).find("[id=five-day-wind]").children().text(fiveDayData[x].wind);
-    $(`[data-id=${x}]`).find("[id=five-day-humidity]").children().text(fiveDayData[x].humidity);
+    $(`[data-id=${x}]`)
+      .find("[id=five-day-emoji]")
+      .children()
+      .attr(
+        "src",
+        `http://openweathermap.org/img/w/${fiveDayData[x].emoji}.png`
+      );
+    $(`[data-id=${x}]`)
+      .find("[id=five-day-temp]")
+      .children()
+      .text(fiveDayData[x].temp);
+    $(`[data-id=${x}]`)
+      .find("[id=five-day-wind]")
+      .children()
+      .text(fiveDayData[x].wind);
+    $(`[data-id=${x}]`)
+      .find("[id=five-day-humidity]")
+      .children()
+      .text(fiveDayData[x].humidity);
   }
 }
