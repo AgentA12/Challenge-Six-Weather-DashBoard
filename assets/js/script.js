@@ -75,26 +75,38 @@ function getCurrentWeatherData(dataObj) {
     .then((response) => {
       if (response.ok) {
         response.json().then((data) => {
-          //create the current date and format it
-          var dateObj = new Date();
-          var month = dateObj.getUTCMonth() + 1; //months from 1-12
-          var day = dateObj.getUTCDate();
-          var year = dateObj.getUTCFullYear();
-          newDate = year + "/" + month + "/" + day;
-
-          console.log(dateObj);
           console.log(data);
 
           //store the necessary currentForcast data to display
           var currentForcast = {
             city: dataObj.city,
-            date: newDate,
+            date: new Date(data.current.dt * 1000).toLocaleString(),
             emoji: data.current.weather[0].icon,
             temp: data.current.temp + " \u00B0C",
             humidity: data.current.humidity + " %",
             UV: data.current.uvi,
+            wind: data.current.wind_speed + " m/s",
           };
           console.log(currentForcast);
+          //get 5 day forcast
+          var fiveDayForcast = [];
+          //loop through the daily data array and get necessary data then push each object into the five day forcast array
+          for (i = 1; i <= 5; i++) {
+            var day = {
+              city: dataObj.city,
+              date: new Date(data.daily[i].dt * 1000).toLocaleString("fr-CA", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              }),
+              emoji: data.daily[i].weather[0].icon,
+              temp: data.daily[i].temp.day + " \u00B0C",
+              wind: data.daily[i].wind_speed + " m/s",
+              humidity: data.daily[i].humidity + " %",
+            };
+            fiveDayForcast.push(day);
+          }
+          console.log(fiveDayForcast);
         });
       }
     })
@@ -102,3 +114,5 @@ function getCurrentWeatherData(dataObj) {
       alert("Error, something went wrong");
     });
 }
+
+console.log();
