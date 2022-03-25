@@ -67,8 +67,12 @@
                 <i id="current-emoji"></i>
               </h2>
               <ul class="list-group list-group-flush mb-2 mt-2">
-                <li class="list-group-item border-0">Temp: <span id="current-temp"></span></li>
-                <li class="list-group-item border-0">Wind: <span id="current-wind"></span></li>
+                <li class="list-group-item border-0">
+                  Temp: <span id="current-temp"></span>
+                </li>
+                <li class="list-group-item border-0">
+                  Wind: <span id="current-wind"></span>
+                </li>
                 <li class="list-group-item border-0">
                   Humidity: <span id="current-humidity"></span>
                 </li>
@@ -80,88 +84,158 @@
 
             <div class="row">
               <h3 class="h3 ps-0 text-center text-sm-start">5-Day Forecast:</h3>
-              <div class="col-md mt-2 bg-three text-light me-2">
-                <h4 class="mt-2">3/31/2022</h4>
+              <div
+                class="col-md mt-2 bg-three text-light me-2"
+                data-id="0"
+                id="five-day-div"
+              >
+                <h4 class="mt-2"></h4>
                 <ul class="list-group list-group-flush mb-3">
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    emoji
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-emoji"
+                  ></li>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-temp"
+                  >
+                    temp: <span></span>
                   </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    temp: <i></i>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-wind"
+                  >
+                    Wind: <span></span>
                   </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    Wind: <i></i>
-                  </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    Humidity: <i></i>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-humidity"
+                  >
+                    Humidity: <span></span>
                   </li>
                 </ul>
               </div>
-              <div class="col-md mt-2 bg-three text-light me-2">
-                <h4 class="mt-2">3/31/2022</h4>
+              <div
+                class="col-md mt-2 bg-three text-light me-2"
+                data-id="1"
+                id="five-day-div"
+              >
+                <h4 class="mt-2"></h4>
                 <ul class="list-group list-group-flush mb-3">
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    emoji
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-emoji"
+                  ></li>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-temp"
+                  >
+                    temp: <span></span>
                   </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    temp: <i></i>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-wind"
+                  >
+                    Wind: <span></span>
                   </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    Wind: <i></i>
-                  </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    Humidity: <i></i>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-humidity"
+                  >
+                    Humidity: <span></span>
                   </li>
                 </ul>
               </div>
-              <div class="col-md mt-2 bg-three text-light me-2">
-                <h4 class="mt-2">3/31/2022</h4>
+              <div
+                class="col-md mt-2 bg-three text-light me-2"
+                data-id="2"
+                id="five-day-div"
+              >
+                <h4 class="mt-2"></h4>
                 <ul class="list-group list-group-flush mb-3">
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    emoji
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-emoji"
+                  ></li>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-temp"
+                  >
+                    temp: <span></span>
                   </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    temp: <i></i>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-wind"
+                  >
+                    Wind: <span></span>
                   </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    Wind: <i></i>
-                  </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    Humidity: <i></i>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-humidity"
+                  >
+                    Humidity: <span></span>
                   </li>
                 </ul>
               </div>
-              <div class="col-md mt-2 bg-three text-light me-2">
-                <h4 class="mt-2">3/31/2022</h4>
+              <div
+                class="col-md mt-2 bg-three text-light me-2"
+                data-id="3"
+                id="five-day-div"
+              >
+                <h4 class="mt-2"></h4>
                 <ul class="list-group list-group-flush mb-3">
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    emoji
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-emoji"
+                  ></li>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-temp"
+                  >
+                    temp: <span></span>
                   </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    temp: <i></i>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-wind"
+                  >
+                    Wind: <span></span>
                   </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    Wind: <i></i>
-                  </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    Humidity: <i></i>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-humidity"
+                  >
+                    Humidity: <span></span>
                   </li>
                 </ul>
               </div>
-              <div class="col-md mt-2 bg-three text-light me-2">
-                <h4 class="mt-2">3/31/2022</h4>
+              <div
+                class="col-md mt-2 bg-three text-light me-2"
+                data-id="4"
+                id="five-day-div"
+              >
+                <h4 class="mt-2"></h4>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    emoji
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-emoji"
+                  ></li>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-temp"
+                  >
+                    temp: <span></span>
                   </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    temp: <i></i>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-wind"
+                  >
+                    Wind: <span></span>
                   </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    Wind: <i></i>
-                  </li>
-                  <li class="list-group-item bg-three border-0 text-white ps-0">
-                    Humidity: <i></i>
+                  <li
+                    class="list-group-item bg-three border-0 text-white ps-0"
+                    id="five-day-humidity"
+                  >
+                    Humidity: <span></span>
                   </li>
                 </ul>
               </div>

@@ -75,15 +75,17 @@ function getCurrentWeatherData(dataObj) {
     .then((response) => {
       if (response.ok) {
         response.json().then((data) => {
-          console.log(data);
           //store the necessary currentForcast data to display
           var currentForcast = {
             city: dataObj.city,
-            date: '(' + new Date(data.current.dt * 1000).toLocaleString("fr-CA", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            }) + ')',
+            date:
+              "(" +
+              new Date(data.current.dt * 1000).toLocaleString("fr-CA", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              }) +
+              ")",
             emoji: data.current.weather[0].icon,
             temp: data.current.temp + " \u00B0C",
             humidity: data.current.humidity + " %",
@@ -121,8 +123,6 @@ function getCurrentWeatherData(dataObj) {
 }
 
 function displayWeatherData(currentData, fiveDayData) {
-  console.log(currentData);
-  console.log(fiveDayData);
   //append current date data to html
   $("#current-city").text(currentData.city);
   $("#current-date").text(currentData.date);
@@ -132,7 +132,14 @@ function displayWeatherData(currentData, fiveDayData) {
   $("#current-humidity").text(currentData.humidity);
   $("#current-UV").text(currentData.UV);
 
-
   //update five day forcast
-  
+  for (x = 0; x < fiveDayData.length; x++) {
+    //select the correct container div using the data-id attribute
+    //WHATS HAPPENING: after selecting the contianer div, find the element inside the div that matches the .find() selector, then look at the only children that are spans and set the text content 
+    $(`[data-id=${x}]`).find("h4").text(fiveDayData[x].date);
+    $(`[data-id=${x}]`).find("[id=five-day-emoji]").text(fiveDayData[x].emoji)
+    $(`[data-id=${x}]`).find("[id=five-day-temp]").children().text(fiveDayData[x].temp);
+    $(`[data-id=${x}]`).find("[id=five-day-wind]").children().text(fiveDayData[x].wind);
+    $(`[data-id=${x}]`).find("[id=five-day-humidity]").children().text(fiveDayData[x].humidity);
+  }
 }
