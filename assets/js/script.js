@@ -21,6 +21,7 @@ $(document).ready(() => {
       getCityData(cityInputValue);
     } else displayErrorMessage();
   });
+  displayDataHistory();
 });
 
 function displayErrorMessage() {
@@ -183,8 +184,44 @@ function saveCityToLocalStorage(cityObject) {
       existingCitys.splice(i, 1);
     }
   }
-  //else just push the city
+  //push the city
   existingCitys.push(cityObject);
 
   localStorage.setItem("cities", JSON.stringify(existingCitys));
 }
+
+function displayDataHistory() {
+  var arrayOfCitys = JSON.parse(localStorage.getItem("cities"));
+
+  if (!arrayOfCitys) getCityData("ottawa");
+
+  var randomIndex = Math.floor(Math.random() * arrayOfCitys.length);
+
+  getCityData(arrayOfCitys[randomIndex].city);
+
+  for (i = 0; i < arrayOfCitys.length; i++) {
+    appendCitys(arrayOfCitys[i].city);
+  }
+}
+
+function appendCitys(city) {
+  var listEl = $("<li>")
+    .addClass(
+      "bg-two text-center list-group-item border-0 mb-2 rounded h5 hover "
+    )
+    .text(city);
+  $("#list-container").append(listEl);
+}
+
+//select the divs
+$("#list-container").on("click", "li", (event) => {
+  var targetCity = $(event.target).text();
+  var listOfCities = JSON.parse(localStorage.getItem("cities"));
+  listOfCities.forEach((city) => {
+    if (targetCity === city.city) getCityData(city.city);
+  });
+});
+//on click look at the text content
+//get the local storage array
+//loop through the array
+//if the text of the div matches the city name of the current object call the display data function and pass the city name in
