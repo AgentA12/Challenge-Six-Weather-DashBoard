@@ -70,7 +70,7 @@ function getCityData(cityName) {
 function getCurrentWeatherData(dataObj) {
   //use the lon and lat to get the full list of weather data
   fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${dataObj.lat}&lon=${dataObj.lon}&appid=f67de90c072b4163b9f81aab537254be&units=metric`
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${dataObj.lat}&lon=${dataObj.lon}&appid=f67de90c072b4163b9f81aab537254be&units=imperial`
   )
     .then((response) => {
       if (response.ok) {
@@ -87,12 +87,13 @@ function getCurrentWeatherData(dataObj) {
               }) +
               ")",
             emoji: data.current.weather[0].icon,
-            temp: data.current.temp + " \u00B0C",
+            temp: data.current.temp + " \u00B0F",
             humidity: data.current.humidity + " %",
             UV: data.current.uvi,
-            wind: data.current.wind_speed + " m/s",
+            wind: data.current.wind_speed + " MPH",
           };
-
+          //validate UV as int
+          currentForcast.UV = parseFloat(currentForcast.UV);
           //get 5 day forcast
           var fiveDayForcast = [];
           //loop through the daily data array and get necessary data then push each object into the five day forcast array
@@ -105,8 +106,8 @@ function getCurrentWeatherData(dataObj) {
                 day: "2-digit",
               }),
               emoji: data.daily[i].weather[0].icon,
-              temp: data.daily[i].temp.day + " \u00B0C",
-              wind: data.daily[i].wind_speed + " m/s",
+              temp: data.daily[i].temp.day + " \u00B0F",
+              wind: data.daily[i].wind_speed + " MPH",
               humidity: data.daily[i].humidity + " %",
             };
             //add the day to the array
@@ -114,6 +115,8 @@ function getCurrentWeatherData(dataObj) {
           }
           //pass the two bits of data to get appended to the page
           displayWeatherData(currentForcast, fiveDayForcast);
+          //save current city to local storage
+          saveCityToLocalStorage(currentForcast);
         });
       }
     })
@@ -166,4 +169,22 @@ function displayWeatherData(currentData, fiveDayData) {
       .children()
       .text(fiveDayData[x].humidity);
   }
+}
+
+function saveCityToLocalStorage(cityObject) {
+  var existingCitys = JSON.parse(localStorage.getItem("cities"));
+  if (!existingCitys) existingCitys = [];
+
+  //loop through the array
+  for (i = 0; i < existingCitys.length; i++) {
+    //check if the existingCitys.city already exists
+    //if it does, remove the object
+    if (existingCitys[i].city === cityObject.city) {
+      existingCitys.splice(i, 1);
+    }
+  }
+  //else just push the city
+  existingCitys.push(cityObject);
+
+  localStorage.setItem("cities", JSON.stringify(existingCitys));
 }
