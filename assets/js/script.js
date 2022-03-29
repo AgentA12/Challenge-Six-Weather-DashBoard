@@ -52,7 +52,7 @@ function getCityData(cityName) {
             displayErrorMessage();
             return;
           }
-          //get the city name, lon and lat and round them to the nearest two decimal places. note: if i lefted the entire cords as is i would get an error
+          //get the city name, lon and lat and round them to the nearest two decimal places. note: if i left the entire cords as is i would get an error
           var cityDataShort = {
             city: data[0].name,
             lon: Math.round(data[0].lon * 100) / 100,
@@ -118,6 +118,8 @@ function getCurrentWeatherData(dataObj) {
           displayWeatherData(currentForcast, fiveDayForcast);
           //save current city to local storage
           saveCityToLocalStorage(currentForcast);
+          //append the current city to list
+          appendCitys(currentForcast.city);
         });
       }
     })
@@ -140,9 +142,10 @@ function displayWeatherData(currentData, fiveDayData) {
   $("#current-UV").text(currentData.UV);
 
   //apply bg color for UV index
-  if (currentData.UV <= 2) {
+  $("#current-UV").removeClass("bg-success bg-warning bg-danger");
+  if (currentData.UV < 3) {
     $("#current-UV").addClass("badge bg-success");
-  } else if (currentData.UV <= 6) {
+  } else if (currentData.UV < 6) {
     $("#current-UV").addClass("badge bg-warning");
   } else $("#current-UV").addClass("badge bg-danger");
 
@@ -191,37 +194,53 @@ function saveCityToLocalStorage(cityObject) {
 }
 
 function displayDataHistory() {
+  //get the cities from local storage
   var arrayOfCitys = JSON.parse(localStorage.getItem("cities"));
 
   if (!arrayOfCitys) getCityData("ottawa");
 
-  var randomIndex = Math.floor(Math.random() * arrayOfCitys.length);
+  getCityData(arrayOfCitys[0].city);
 
-  getCityData(arrayOfCitys[randomIndex].city);
-
-  for (i = 0; i < arrayOfCitys.length; i++) {
+  for (i = 0; i < 8; i++) {
     appendCitys(arrayOfCitys[i].city);
   }
 }
 
 function appendCitys(city) {
+  //get the li's in the list container and set a flag to false
+  var listItems = $("#list-container li");
+  var flag = false;
+
+  //loop through the li's, if the city being past in matches the current li's text set the flag to true
+  listItems.each(function () {
+    if ($(this).text() === city) {
+      flag = true;
+    }
+  });
+
+  //if the flag is true, return out of the function before appending an li
+  if (flag == true) {
+    return;
+  }
+
+  //create the li and append it to the ul
   var listEl = $("<li>")
     .addClass(
       "bg-two text-center list-group-item border-0 mb-2 rounded h5 hover "
     )
     .text(city);
-  $("#list-container").append(listEl);
+  $("#list-container").prepend(listEl);
+  
+  //if the list length is 8 remove the last li
+  if ($("#list-container").children().length > 8) {
+    $("#list-container").children().last().remove();
+  }
 }
 
-//select the divs
 $("#list-container").on("click", "li", (event) => {
   var targetCity = $(event.target).text();
   var listOfCities = JSON.parse(localStorage.getItem("cities"));
   listOfCities.forEach((city) => {
-    if (targetCity === city.city) getCityData(city.city);
+    if (targetCity === city.city) getCityData(targetCity);
   });
 });
-//on click look at the text content
-//get the local storage array
-//loop through the array
-//if the text of the div matches the city name of the current object call the display data function and pass the city name in

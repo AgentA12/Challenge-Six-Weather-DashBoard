@@ -12,11 +12,12 @@
 body {
   overflow-x: hidden;
   overflow-y: hidden;
+  text-transform: capitalize;
 }
-
+/* Utility styles */
 .hover:hover {
   cursor: pointer;
-  background-color: #A9A9A9;
+  background-color: #a9a9a9;
 }
 
 .style-none {
