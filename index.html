@@ -23,9 +23,18 @@
   <body>
     <!-- header -->
     <header class="p-4 bg-four text-white mb-4">
-      <h1 class="fade-in font-stack text-center">
-        <b>Weather Dashboard</b>
-      </h1>
+      <div class="container-fluid">
+        <div class="row justify-content-end align-items-center">
+          <h1 class="fade-in font-stack text-center col-xxl-4 col-md">
+            <b>Weather Dashboard</b>
+          </h1>
+          <h3 class="fade-in font-stack text-center col-xxl-4 col-md" id="unit-container">
+            <span class="border-end border-3 pe-3 unit text-warning" id="imperial"
+              >Imperial</span
+            ><span class="ps-3 unit" id="metric">Metric</span>
+          </h3>
+        </div>
+      </div>
     </header>
     <!-- main -->
     <main>
@@ -44,7 +53,7 @@
                 aria-describedby="emailHelp"
                 placeholder="See Todays Weather..."
               />
-              
+
               <button type="submit" class="btn btn-primary w-100 btn-lg">
                 Search
               </button>
@@ -57,56 +66,60 @@
           </div>
           <!-- second right column with displayed weather data -->
           <div class="col-xl-9 col-sm-7 slide-bottom">
-            <div class="row border border-2 border-dark mb-3 mt-2 mt-sm-0 text-center text-md-start">
+            <div
+              class="row shadow-lg mb-3 mt-2 mt-sm-0 text-center text-md-start transparent"
+            >
               <h2 class="mt-2">
                 <span id="current-city"></span> <span id="current-date"></span>
                 <img alt="" id="current-emoji" src="" />
               </h2>
               <ul class="list-group list-group-flush mb-2 mt-2">
-                <li class="list-group-item border-0">
+                <li class="list-group-item border-0 transparent-list">
                   Temp: <span id="current-temp"></span>
                 </li>
-                <li class="list-group-item border-0">
+                <li class="list-group-item border-0 transparent-list">
                   Wind: <span id="current-wind"></span>
                 </li>
-                <li class="list-group-item border-0">
+                <li class="list-group-item border-0 transparent-list">
                   Humidity: <span id="current-humidity"></span>
                 </li>
-                <li class="list-group-item border-0">
+                <li class="list-group-item border-0 transparent-list">
                   UV Index: <span id="current-UV"></span>
                 </li>
               </ul>
             </div>
 
             <div class="row">
-              <h3 class="h3 ps-0 text-center text-sm-start">5-Day Forecast:</h3>
+              <h3 class="h3 ps-0 text-center text-sm-start text-black-100">
+                5-Day Forecast:
+              </h3>
               <div
-                class="col-md mt-2 bg-three text-light me-2 text-center text-md-start"
+                class="col-md mt-2 text-black me-2 text-center shadow h5"
                 data-id="0"
                 id="five-day-div"
               >
-                <h4 class="mt-2"></h4>
+                <h4 class="mt-2 p-3"></h4>
                 <ul class="list-group list-group-flush mb-3">
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-emoji"
                   >
                     <img src="" alt="" />
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-temp"
                   >
                     temp: <span></span>
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-wind"
                   >
                     Wind: <span></span>
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-humidity"
                   >
                     Humidity: <span></span>
@@ -114,32 +127,32 @@
                 </ul>
               </div>
               <div
-                class="col-md mt-2 bg-three text-light me-2 text-center text-md-start"
+                class="col-md mt-2 text-black me-2 text-center shadow h5"
                 data-id="1"
                 id="five-day-div"
               >
-                <h4 class="mt-2"></h4>
+                <h4 class="mt-2 p-3"></h4>
                 <ul class="list-group list-group-flush mb-3">
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-emoji"
                   >
                     <img src="" alt="" />
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-temp"
                   >
                     temp: <span></span>
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-wind"
                   >
                     Wind: <span></span>
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-humidity"
                   >
                     Humidity: <span></span>
@@ -147,32 +160,32 @@
                 </ul>
               </div>
               <div
-                class="col-md mt-2 bg-three text-light me-2 text-center text-md-start"
+                class="col-md mt-2 text-black me-2 text-center shadow h5"
                 data-id="2"
                 id="five-day-div"
               >
-                <h4 class="mt-2"></h4>
+                <h4 class="mt-2 p-3"></h4>
                 <ul class="list-group list-group-flush mb-3">
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-emoji"
                   >
                     <img src="" alt="" />
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-temp"
                   >
                     temp: <span></span>
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-wind"
                   >
                     Wind: <span></span>
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-humidity"
                   >
                     Humidity: <span></span>
@@ -180,32 +193,32 @@
                 </ul>
               </div>
               <div
-                class="col-md mt-2 bg-three text-light me-2 text-center text-md-start"
+                class="col-md mt-2 text-black me-2 text-center shadow h5"
                 data-id="3"
                 id="five-day-div"
               >
-                <h4 class="mt-2"></h4>
+                <h4 class="mt-2 p-3"></h4>
                 <ul class="list-group list-group-flush mb-3">
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-emoji"
                   >
                     <img src="" alt="" />
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-temp"
                   >
                     temp: <span></span>
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-wind"
                   >
                     Wind: <span></span>
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-humidity"
                   >
                     Humidity: <span></span>
@@ -213,32 +226,32 @@
                 </ul>
               </div>
               <div
-                class="col-md mt-2 bg-three text-light me-2 text-center text-md-start"
+                class="col-md mt-2 text-black me-2 text-center shadow h5"
                 data-id="4"
                 id="five-day-div"
               >
-                <h4 class="mt-2"></h4>
+                <h4 class="mt-2 p-3"></h4>
                 <ul class="list-group list-group-flush">
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-emoji"
                   >
                     <img src="" alt="" />
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-temp"
                   >
                     temp: <span></span>
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-wind"
                   >
                     Wind: <span></span>
                   </li>
                   <li
-                    class="list-group-item bg-three border-0 text-white ps-0"
+                    class="list-group-item border-0 text-black ps-0 transparent-list"
                     id="five-day-humidity"
                   >
                     Humidity: <span></span>

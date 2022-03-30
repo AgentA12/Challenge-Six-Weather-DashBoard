@@ -1,9 +1,27 @@
+var selectedUnit = "Imperial";
 //when document is ready start program
 $(document).ready(() => {
   //for animation purposes
   setTimeout(() => {
     $("body").css({ "overflow-x": "auto", "overflow-y": "auto" });
   }, 2000);
+
+  //
+  $("#unit-container").on("click", "span", function () {
+    var currentCity = $("#current-city").text();
+
+    if ($(this).text() === "Metric") {
+      selectedUnit = "Metric";
+      $("#metric").addClass("text-warning");
+      $("#imperial").removeClass("text-warning");
+    } else if ($(this).text() === "Imperial") {
+      selectedUnit = "Imperial";
+      $("#metric").removeClass("text-warning");
+      $("#imperial").addClass("text-warning");
+    }
+
+    getCityData(currentCity, selectedUnit);
+  });
 
   //on submit of the element with id of form container, pass the event as an argument
   $("#form-container").on("submit", (event) => {
@@ -18,7 +36,7 @@ $(document).ready(() => {
       //remove the error message if it is appended
       $("#error-div").remove();
       //get the city data and pass the city name in
-      getCityData(cityInputValue);
+      getCityData(cityInputValue, selectedUnit);
     } else displayErrorMessage();
   });
   displayDataHistory();
@@ -39,7 +57,7 @@ function displayErrorMessage() {
   $("#form-container").append(errorMessageEl);
 }
 
-function getCityData(cityName) {
+function getCityData(cityName, unit) {
   //get the lon and lat for the inputed city. note: i counldn't get the geocoding to work
   fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=f67de90c072b4163b9f81aab537254be`
@@ -59,7 +77,7 @@ function getCityData(cityName) {
             lat: Math.round(data[0].lat * 100) / 100,
           };
           //pass the city data to get the current weather data
-          getCurrentWeatherData(cityDataShort);
+          getCurrentWeatherData(cityDataShort, unit);
         });
       }
     })
@@ -68,10 +86,12 @@ function getCityData(cityName) {
     });
 }
 
-function getCurrentWeatherData(dataObj) {
+function getCurrentWeatherData(dataObj, unit) {
   //use the lon and lat to get the full list of weather data
+  //set the unit parameter to ${unit}
+  //check if unit is metric or imperial and change the data strings accordingly
   fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${dataObj.lat}&lon=${dataObj.lon}&appid=f67de90c072b4163b9f81aab537254be&units=imperial`
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${dataObj.lat}&lon=${dataObj.lon}&appid=f67de90c072b4163b9f81aab537254be&units=${unit}`
   )
     .then((response) => {
       if (response.ok) {
@@ -81,36 +101,53 @@ function getCurrentWeatherData(dataObj) {
             city: dataObj.city,
             date:
               "(" +
-              new Date(data.current.dt * 1000).toLocaleString("fr-CA", {
+              new Date(data.current.dt * 1000).toLocaleString("en-US", {
+                weekday: "long",
                 year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
+                month: "long",
+                day: "numeric",
               }) +
               ")",
             emoji: data.current.weather[0].icon,
-            temp: data.current.temp + " \u00B0F",
+            temp: data.current.temp + " \u00B0",
             humidity: data.current.humidity + " %",
             UV: data.current.uvi,
-            wind: data.current.wind_speed + " MPH",
+            wind: data.current.wind_speed,
           };
+
+          if (unit === "Imperial") {
+            currentForcast.temp = currentForcast.temp + "F";
+            currentForcast.wind = currentForcast.wind + " MPH";
+          } else {
+            currentForcast.temp = currentForcast.temp + " C";
+            currentForcast.wind = currentForcast.wind + " M/S";
+          }
           //validate UV as int
           currentForcast.UV = parseFloat(currentForcast.UV);
           //get 5 day forcast
           var fiveDayForcast = [];
           //loop through the daily data array and get necessary data then push each object into the five day forcast array
-          for (i = 1; i <= 5; i++) {
+          for (i = 1; i < 6; i++) {
             var day = {
               city: dataObj.city,
-              date: new Date(data.daily[i].dt * 1000).toLocaleString("fr-CA", {
+              date: new Date(data.daily[i].dt * 1000).toLocaleString("en-US", {
+                weekday: "long",
                 year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
+                month: "long",
+                day: "numeric",
               }),
               emoji: data.daily[i].weather[0].icon,
-              temp: data.daily[i].temp.day + " \u00B0F",
-              wind: data.daily[i].wind_speed + " MPH",
+              temp: data.daily[i].temp.day + " \u00B0",
+              wind: data.daily[i].wind_speed,
               humidity: data.daily[i].humidity + " %",
             };
+            if (unit === "Imperial") {
+              day.temp = day.temp + "F";
+              day.wind = day.wind + " MPH";
+            } else {
+              day.temp = day.temp + " C";
+              day.wind = day.wind + " M/S";
+            }
             //add the day to the array
             fiveDayForcast.push(day);
           }
@@ -197,12 +234,14 @@ function displayDataHistory() {
   //get the cities from local storage
   var arrayOfCitys = JSON.parse(localStorage.getItem("cities"));
 
-  if (!arrayOfCitys) getCityData("ottawa");
+  if (!arrayOfCitys) {
+    getCityData("ottawa", selectedUnit);
+  } else getCityData(arrayOfCitys[0].city, selectedUnit);
 
-  getCityData(arrayOfCitys[0].city);
-
-  for (i = 0; i < 8; i++) {
-    appendCitys(arrayOfCitys[i].city);
+  if (arrayOfCitys) {
+    for (i = 0; i < 8; i++) {
+      appendCitys(arrayOfCitys[i].city);
+    }
   }
 }
 
@@ -230,7 +269,7 @@ function appendCitys(city) {
     )
     .text(city);
   $("#list-container").prepend(listEl);
-  
+
   //if the list length is 8 remove the last li
   if ($("#list-container").children().length > 8) {
     $("#list-container").children().last().remove();
@@ -241,6 +280,6 @@ $("#list-container").on("click", "li", (event) => {
   var targetCity = $(event.target).text();
   var listOfCities = JSON.parse(localStorage.getItem("cities"));
   listOfCities.forEach((city) => {
-    if (targetCity === city.city) getCityData(targetCity);
+    if (targetCity === city.city) getCityData(targetCity, selectedUnit);
   });
 });
