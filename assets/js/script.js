@@ -96,7 +96,7 @@ function getCurrentWeatherData(dataObj, unit) {
     .then((response) => {
       if (response.ok) {
         response.json().then((data) => {
-          console.log(data)
+          console.log(data);
           //store the necessary currentForcast data to display
           var currentForcast = {
             city: dataObj.city,
@@ -123,7 +123,6 @@ function getCurrentWeatherData(dataObj, unit) {
             currentForcast.temp = currentForcast.temp + " C";
             currentForcast.wind = currentForcast.wind + " M/S";
           }
-          console.log(currentForcast.UV);
           //validate UV as int
           currentForcast.UV = parseFloat(currentForcast.UV);
           //get 5 day forcast

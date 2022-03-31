@@ -13,17 +13,15 @@ body {
   overflow-x: hidden;
   overflow-y: hidden;
   text-transform: capitalize;
- 
   font-family: var(--font-stack);
- 
 }
 /* Utility styles */
 
-.transparent{
-  background-color: transparent
+.transparent {
+  background-color: transparent;
 }
 
-.transparent-list{
+.transparent-list {
   background-color: transparent;
 }
 .hover:hover {
@@ -31,7 +29,7 @@ body {
   background-color: #a9a9a9;
 }
 
-.unit:hover{
+.unit:hover {
   color: #d2cb6b;
   cursor: pointer;
 }
