@@ -6,10 +6,12 @@ $(document).ready(() => {
     $("body").css({ "overflow-x": "auto", "overflow-y": "auto" });
   }, 2000);
 
-  //
+  //on click of el with an id unit container with a span child
   $("#unit-container").on("click", "span", function () {
+    //get the current city text
     var currentCity = $("#current-city").text();
-
+    console.log($(this));
+    //see if the target text is === to metric or imperial, then add a yellow color to the text to indicate it is selected
     if ($(this).text() === "Metric") {
       selectedUnit = "Metric";
       $("#metric").addClass("text-warning");
@@ -19,7 +21,7 @@ $(document).ready(() => {
       $("#metric").removeClass("text-warning");
       $("#imperial").addClass("text-warning");
     }
-
+    //get the data of the current city with the selected unit
     getCityData(currentCity, selectedUnit);
   });
 
@@ -87,8 +89,7 @@ function getCityData(cityName, unit) {
 }
 
 function getCurrentWeatherData(dataObj, unit) {
-  //use the lon and lat to get the full list of weather data
-  //set the unit parameter to ${unit}
+  //use the lon and lat and unit to get the full list of weather data
   //check if unit is metric or imperial and change the data strings accordingly
   fetch(
     `https://api.openweathermap.org/data/2.5/onecall?lat=${dataObj.lat}&lon=${dataObj.lon}&appid=f67de90c072b4163b9f81aab537254be&units=${unit}`
@@ -152,7 +153,7 @@ function getCurrentWeatherData(dataObj, unit) {
             //add the day to the array
             fiveDayForcast.push(day);
           }
-          //pass the two bits of data to get appended to the page
+          //pass the two parts of data to get appended to the page
           displayWeatherData(currentForcast, fiveDayForcast);
           //save current city to local storage
           saveCityToLocalStorage(currentForcast);
@@ -227,18 +228,18 @@ function saveCityToLocalStorage(cityObject) {
   }
   //push the city
   existingCitys.push(cityObject);
-
+  //set the items
   localStorage.setItem("cities", JSON.stringify(existingCitys));
 }
 
 function displayDataHistory() {
   //get the cities from local storage
   var arrayOfCitys = JSON.parse(localStorage.getItem("cities"));
-
+  //if there are no cities in local storage, default to ottawa else display the first city
   if (!arrayOfCitys) {
     getCityData("ottawa", selectedUnit);
   } else getCityData(arrayOfCitys[0].city, selectedUnit);
-
+  //if there are citys append each one
   if (arrayOfCitys) {
     for (i = 0; i < 8; i++) {
       appendCitys(arrayOfCitys[i].city);
@@ -258,7 +259,7 @@ function appendCitys(city) {
     }
   });
 
-  //if the flag is true, return out of the function before appending an li
+  //if the flag is true, return out of the function before appending an li to avoid appending the same city twice
   if (flag == true) {
     return;
   }
@@ -277,9 +278,12 @@ function appendCitys(city) {
   }
 }
 
+//on click of an city in the list-container
 $("#list-container").on("click", "li", (event) => {
+  //get the text of the li
   var targetCity = $(event.target).text();
   var listOfCities = JSON.parse(localStorage.getItem("cities"));
+  //if the text matches get the current data and 5 day forecast
   listOfCities.forEach((city) => {
     if (targetCity === city.city) getCityData(targetCity, selectedUnit);
   });
